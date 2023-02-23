@@ -1,0 +1,116 @@
+{
+  "categories": [
+    {
+      "categoryId": 1001,
+      "name": "Classics"
+    },
+    {
+      "categoryId": 1002,
+      "name": "History"
+    },
+    {
+      "categoryId": 1003,
+      "name": "Sports"
+    },
+    {
+      "categoryId": 1004,
+      "name": "Non-Fiction"
+    },
+    {
+      "categoryId": 1005,
+      "name": "Science Fiction"
+    }
+  ],
+  "books": [
+    {
+      "bookId": 1001,
+      "title": "Artemis",
+      "author": "Andy Weir",
+      "price": 499,
+      "isPublic": true,
+      "isBookOfTheWeek": false,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1002,
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "price": 799,
+      "isPublic": false,
+      "isBookOfTheWeek": true,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1003,
+      "title": "The Martian",
+      "author": "Andy Weir",
+      "price": 499,
+      "isPublic": true,
+      "isBookOfTheWeek": true,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1004,
+      "title": "The Gunslinger",
+      "author": "Stephen King",
+      "price": 399,
+      "isPublic": true,
+      "isBookOfTheWeek": false,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1005,
+      "title": "The Drawing Of The Three",
+      "author": "Stephen King",
+      "price": 499,
+      "isPublic": false,
+      "isBookOfTheWeek": false,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1006,
+      "title": "The City Of Ember",
+      "author": "Jeanne DePrau",
+      "price": 199,
+      "isPublic": false,
+      "isBookOfTheWeek": false,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1007,
+      "title": "A Game Of Thrones",
+      "author": "George R.R. Martin",
+      "price": 499,
+      "isPublic": false,
+      "isBookOfTheWeek": true,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1008,
+      "title": "Ender's Game",
+      "author": "Orson Scott Card",
+      "price": 399,
+      "isPublic": false,
+      "isBookOfTheWeek": false,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1009,
+      "title": "Farhrenheit 451",
+      "author": "Ray Bradbury",
+      "price": 699,
+      "isPublic": false,
+      "isBookOfTheWeek": false,
+      "categoryId": 1005
+    },
+    {
+      "bookId": 1010,
+      "title": "The Lord Of The Rings",
+      "author": "J.R.R. Tolkien",
+      "price": 899,
+      "isPublic": false,
+      "isBookOfTheWeek": false,
+      "categoryId": 1005
+    }
+  ]
+}
