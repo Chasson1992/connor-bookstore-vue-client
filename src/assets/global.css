@@ -224,9 +224,4 @@ a:active {
 #app {
   display: flex;
   flex-grow: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }

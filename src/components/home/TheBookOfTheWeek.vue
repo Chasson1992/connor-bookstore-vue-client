@@ -60,7 +60,7 @@ function getImageUrl(name: string) {
 
 .book-of-the-week-spinner img {
   height: 200px;
-  width: auto;
+  width: 135px;
 }
 
 @media screen and (max-width: 1000px) {

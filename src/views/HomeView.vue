@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { provide } from "vue";
-import sourceData from "@/db.json";
 import type { BookItem } from "@/types";
 import TheCTA from "@/components/home/TheCTA.vue";
 import TheBookOfTheWeek from "@/components/home/TheBookOfTheWeek.vue";
 
-const bookList = sourceData.books as BookItem[];
-const booksOfTheWeek = bookList.filter((bookItem) => bookItem.isBookOfTheWeek);
+let response = await fetch("http://localhost:8080/ConnorBookstoreFetch/api/booksoftheweek");
+let data = await response.json();
+let booksOfTheWeek = data as BookItem[];
 </script>
 
 <style scoped>

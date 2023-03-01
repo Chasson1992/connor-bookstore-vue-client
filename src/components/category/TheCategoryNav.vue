@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { inject } from "vue";
 import type { CategoryItem } from "@/types";
 
-const categoryList = inject("categoryList") as CategoryItem[];
+let response = await fetch("http://localhost:8080/ConnorBookstoreFetch/api/categories/");
+let data = await response.json();
+let categoryList = data as CategoryItem[];
 </script>
 
 <style scoped>

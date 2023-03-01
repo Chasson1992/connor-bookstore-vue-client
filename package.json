@@ -1,5 +1,5 @@
 {
-  "name": "connor-bookstore-vue-client",
+  "name": "connor-bookstore-fetch-client",
   "version": "0.0.0",
   "private": true,
   "scripts": {
