@@ -1,5 +1,5 @@
 {
-  "name": "connor-bookstore-fetch-client",
+  "name": "connor-bookstore-state-client",
   "version": "0.0.0",
   "private": true,
   "scripts": {
