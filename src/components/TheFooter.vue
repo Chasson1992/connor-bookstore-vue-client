@@ -6,6 +6,7 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: 1em;
+  padding: 1em 2em;
   border-top: 1px solid #eaecef;
 }
 

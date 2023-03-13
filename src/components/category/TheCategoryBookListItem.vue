@@ -32,9 +32,10 @@ function getBookImageUrl(name: string) {
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-  gap: 0.25em;
+  gap: 1.25em;
   width: 200px;
-  max-height: 400px;
+  max-height: 450px;
+  min-height: fit-content;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;

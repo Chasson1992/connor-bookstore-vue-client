@@ -1,19 +1,15 @@
 <script setup lang="ts"></script>
 
 <style scoped>
-.text-logo {
+.bookstore-logo {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 0.25rem;
-  padding-right: 1rem;
-  font-family: var(--title-font-family);
-  font-size: var(--default-font-size);
+  gap: 0rem 1rem;
 }
 
-.bookstore-logo {
-  justify-self: left;
-  display: flex;
+
+.text-logo {
+  font-family: var(--title-font-family);
+  font-size: var(--header2-font-size);
 }
 
 #logo {
@@ -28,13 +24,13 @@
 
 <template>
   <div class="bookstore-logo">
-    <router-link to="/">
+    <router-link to="/" class="bookstore-logo">
       <img
         id="logo"
         src="@/assets/images/site/logo.svg"
         alt="Cam's Used Books Logo"
       />
+      <h1 class="text-logo">Cam's Used Books</h1>
     </router-link>
-    <h1 class="text-logo">Cam's Used Books</h1>
   </div>
 </template>
