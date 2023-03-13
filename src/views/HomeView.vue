@@ -2,11 +2,7 @@
 import type { BookItem } from "@/types";
 import TheCTA from "@/components/home/TheCTA.vue";
 import TheBookOfTheWeek from "@/components/home/TheBookOfTheWeek.vue";
-
-const apiUrl =
-  `${location.protocol}//${location.hostname}:` +
-  `${location.port === "5173" ? "8080" : location.port}` +
-  `${import.meta.env.BASE_URL}/api`;
+import { apiUrl } from "@/api";
 
 let response = await fetch(`${apiUrl}/booksoftheweek`);
 let data = await response.json();

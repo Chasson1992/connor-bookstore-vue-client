@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import type { CategoryItem } from "@/types";
-
-const apiUrl =
-  `${location.protocol}//${location.hostname}:` +
-  `${location.port === "5173" ? "8080" : location.port}` +
-  `${import.meta.env.BASE_URL}/api`;
+import { apiUrl } from "@/api";
 
 let response = await fetch(`${apiUrl}/categories/`);
 let data = await response.json();
