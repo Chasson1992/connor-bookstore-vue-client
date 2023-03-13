@@ -3,7 +3,12 @@ import type { BookItem } from "@/types";
 import TheCTA from "@/components/home/TheCTA.vue";
 import TheBookOfTheWeek from "@/components/home/TheBookOfTheWeek.vue";
 
-let response = await fetch("http://localhost:8080/ConnorBookstoreFetch/api/booksoftheweek");
+const apiUrl =
+  `${location.protocol}//${location.hostname}:` +
+  `${location.port === "5173" ? "8080" : location.port}` +
+  `${import.meta.env.BASE_URL}/api`;
+
+let response = await fetch(`${apiUrl}/booksoftheweek`);
 let data = await response.json();
 let booksOfTheWeek = data as BookItem[];
 </script>
@@ -12,7 +17,7 @@ let booksOfTheWeek = data as BookItem[];
 .home-page {
   display: flex;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-  url("@/assets/images/site/hero-image.jpg");
+    url("@/assets/images/site/hero-image.jpg");
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
@@ -42,7 +47,7 @@ let booksOfTheWeek = data as BookItem[];
   <div class="home-page">
     <section class="hero-area">
       <TheCTA />
-      <TheBookOfTheWeek :booksOfTheWeek="booksOfTheWeek"/>
+      <TheBookOfTheWeek :booksOfTheWeek="booksOfTheWeek" />
     </section>
   </div>
 </template>

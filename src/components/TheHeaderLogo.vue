@@ -6,7 +6,6 @@
   gap: 0rem 1rem;
 }
 
-
 .text-logo {
   font-family: var(--title-font-family);
   font-size: var(--header2-font-size);

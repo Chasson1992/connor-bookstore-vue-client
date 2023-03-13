@@ -1,7 +1,6 @@
 <script setup lang="ts"></script>
 
 <style scoped>
-
 #home-icon {
   height: 250px;
   width: auto;

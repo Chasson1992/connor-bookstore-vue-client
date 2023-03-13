@@ -56,6 +56,6 @@
 <template>
   <form action="category.html" class="search-bar-and-icon">
     <button type="submit" class="button search-button"></button>
-    <input type="text" class="search-bar" placeholder="Search..."/><br />
+    <input type="text" class="search-bar" placeholder="Search..." /><br />
   </form>
 </template>

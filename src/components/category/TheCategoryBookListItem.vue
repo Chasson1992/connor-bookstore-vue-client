@@ -14,7 +14,7 @@ const bookImageFileName = function (book: BookItem): string {
 };
 
 function getBookImageUrl(name: string) {
-  return new URL(`../../assets/images/books/${name}`, import.meta.url).href
+  return new URL(`../../assets/images/books/${name}`, import.meta.url).href;
 }
 </script>
 
@@ -111,7 +111,7 @@ function getBookImageUrl(name: string) {
         :alt="book.title"
       />
       <router-link to="/">
-        <a v-if="book.isPublic" href="#" class="book-peek-inside"/>
+        <a v-if="book.isPublic" href="#" class="book-peek-inside" />
       </router-link>
     </div>
     <div class="book-title">{{ book.title }}</div>

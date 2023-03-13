@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BookItem } from '@/types';
+import type { BookItem } from "@/types";
 
 const props = defineProps<{
   booksOfTheWeek: BookItem[];
@@ -13,7 +13,7 @@ const bookImageFileName = function (book: BookItem): string {
 };
 
 function getImageUrl(name: string) {
-  return new URL(`../../assets/images/books/${name}`, import.meta.url).href
+  return new URL(`../../assets/images/books/${name}`, import.meta.url).href;
 }
 </script>
 
@@ -76,10 +76,7 @@ function getImageUrl(name: string) {
     <div class="book-of-the-week-spinner">
       <div v-for="book in props.booksOfTheWeek" :key="book.bookId">
         <router-link to="/">
-          <img 
-            :src="getImageUrl(bookImageFileName(book))"
-            :alt="book.title"
-          />
+          <img :src="getImageUrl(bookImageFileName(book))" :alt="book.title" />
         </router-link>
       </div>
     </div>
