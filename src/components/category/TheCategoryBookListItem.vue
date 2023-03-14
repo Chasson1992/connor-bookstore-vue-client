@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 import type { BookItem } from "@/types";
+import { useCartStore } from "@/stores/CartStore";
+
+const cartStore = useCartStore();
 
 const props = defineProps<{
   book: BookItem;
@@ -117,6 +120,8 @@ function getBookImageUrl(name: string) {
     <div class="book-title">{{ book.title }}</div>
     <div class="book-author">{{ book.author }}</div>
     <div class="book-price">${{ (book.price / 100).toFixed(2) }}</div>
-    <button class="button">Add to Cart</button>
+    <button class="button" @click="cartStore.addToCart(book)">
+      Add to Cart
+    </button>
   </li>
 </template>

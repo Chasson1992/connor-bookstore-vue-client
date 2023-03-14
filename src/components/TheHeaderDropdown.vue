@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { CategoryItem } from "@/types";
-import { apiUrl } from "@/api";
+import { useCategoryStore } from "@/stores/CategoryStore";
+import { useCartStore } from "@/stores/CartStore";
 
-let response = await fetch(`${apiUrl}/categories/`);
-let data = await response.json();
-let categoryList = data as CategoryItem[];
+const cartStore = useCartStore();
+const categoryStore = useCategoryStore();
 </script>
 
 <style scoped>
@@ -73,7 +73,10 @@ let categoryList = data as CategoryItem[];
         <i class="fa-solid fa-caret-down fa-fw"></i> Categories
       </button>
       <ul>
-        <div v-for="category in categoryList" :key="category.categoryId">
+        <div
+          v-for="category in categoryStore.categoryList as CategoryItem[]"
+          :key="category.categoryId"
+        >
           <router-link
             :to="'/category/' + category.name"
             custom
@@ -95,7 +98,7 @@ let categoryList = data as CategoryItem[];
       <div>Hi, Connor!</div>
     </button>
     <button class="button">
-      <i class="fa fa-shopping-cart" value="0"></i>
+      <i class="fa fa-shopping-cart" :value="cartStore.count"></i>
     </button>
   </div>
 </template>
