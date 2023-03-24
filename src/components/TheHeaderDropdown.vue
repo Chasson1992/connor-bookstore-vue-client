@@ -97,8 +97,8 @@ const categoryStore = useCategoryStore();
       <i class="fa-solid fa-user"></i>
       <div>Hi, Connor!</div>
     </button>
-    <button class="button">
+    <router-link to="/cart">
       <i class="fa fa-shopping-cart" :value="cartStore.count"></i>
-    </button>
+    </router-link>
   </div>
 </template>
