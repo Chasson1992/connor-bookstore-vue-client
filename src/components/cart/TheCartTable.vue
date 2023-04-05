@@ -1,8 +1,19 @@
 <script setup lang="ts">
+import { asDollarsAndCents } from "@/main";
 import { useCartStore } from "@/stores/CartStore";
-import type { ShoppingCartItem } from "@/types";
 import TheCartBook from "./TheCartItem.vue";
+import type { ShoppingCartItem } from "@/types";
 const cartStore = useCartStore();
+
+function subtotal(): string {
+  let subtotal: number = 0;
+
+  cartStore.cart.items.forEach((item) => {
+    subtotal += item.book.price * item.quantity;
+  });
+
+  return asDollarsAndCents(subtotal);
+}
 </script>
 
 <style scoped>
@@ -38,6 +49,11 @@ ul > li {
 .heading-book {
   text-align: left;
 }
+
+.total {
+  padding: 2rem 1rem;
+  text-align: right;
+}
 </style>
 
 <template>
@@ -56,5 +72,8 @@ ul > li {
     >
       <TheCartBook :cartItem="item"></TheCartBook>
     </template>
+    <ul>
+      <h3 class="total">Total {{ subtotal() }}</h3>
+    </ul>
   </div>
 </template>

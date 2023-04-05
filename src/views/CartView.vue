@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import TheCartTable from "@/components/cart/TheCartTable.vue";
-import type router from "@/router";
 import { useCartStore } from "@/stores/CartStore";
 const cartStore = useCartStore();
 </script>

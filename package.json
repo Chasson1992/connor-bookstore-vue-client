@@ -1,5 +1,5 @@
 {
-  "name": "connor-bookstore-session-client",
+  "name": "connor-bookstore-validate-client",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vuelidate/core": "^2.0.2",
+    "@vuelidate/validators": "^2.0.2",
     "pinia": "^2.0.32",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
