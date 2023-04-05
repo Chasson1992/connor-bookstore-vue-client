@@ -1,5 +1,5 @@
 {
-  "name": "connor-bookstore-validate-client",
+  "name": "connor-bookstore-order-client",
   "version": "0.0.0",
   "private": true,
   "scripts": {
