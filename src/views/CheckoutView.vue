@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import useVuelidate from "@vuelidate/core";
 import {
   helpers,
@@ -13,6 +13,7 @@ import { asDollarsAndCents } from "@/main";
 import CheckoutFieldError from "@/components/checkout/CheckoutFieldError.vue";
 import { isCreditCard, isMobilePhone } from "@/validators";
 import router from "@/router";
+import type { OrderDetails, ServerErrorResponse } from "@/types";
 
 const cartStore = useCartStore();
 const cart = cartStore.cart;
@@ -91,18 +92,39 @@ const rules = {
 const v$ = useVuelidate(rules, form);
 
 async function submitOrder() {
+  console.log("Submit order");
   const isFormCorrect = await v$.value.$validate();
   if (!isFormCorrect) {
-    console.log("Error");
     form.checkoutStatus = "ERROR";
   } else {
-    form.checkoutStatus = "PENDING";
-    setTimeout(() => {
-      form.checkoutStatus = "OK";
-      setTimeout(() => {
-        router.push({ name: "confirmation-view" });
-      }, 1000);
-    }, 1000);
+    try {
+      form.checkoutStatus = "PENDING";
+      serverErrorMessage.value = defaultServerErrorMessage;
+
+      const placeOrderResponse: OrderDetails | ServerErrorResponse =
+        await cartStore.placeOrder({
+          name: form.name,
+          address: form.address,
+          phone: form.phone,
+          email: form.email,
+          ccNumber: form.ccNumber,
+          ccExpiryMonth: form.ccExpiryMonth,
+          ccExpiryYear: form.ccExpiryYear,
+        });
+
+      if ("error" in placeOrderResponse) {
+        form.checkoutStatus = "SERVER_ERROR";
+        serverErrorMessage.value = placeOrderResponse.message;
+        console.log("Error placing order", placeOrderResponse);
+      } else {
+        form.checkoutStatus = "OK";
+        await router.push({ name: "confirmation-view" });
+      }
+    } catch (e) {
+      form.checkoutStatus = "SERVER_ERROR";
+      serverErrorMessage.value = defaultServerErrorMessage;
+      console.log("Exception thrown", e);
+    }
   }
 }
 
@@ -131,6 +153,10 @@ function subtotalWithShipping(): string {
 
   return asDollarsAndCents(subtotal);
 }
+
+const defaultServerErrorMessage =
+  "An unexpected error occurred, please try again.";
+const serverErrorMessage = ref(defaultServerErrorMessage);
 </script>
 
 <style scoped>
@@ -297,7 +323,7 @@ form > .error {
 
         <div v-else-if="form.checkoutStatus === 'OK'">Order placed...</div>
 
-        <div v-else>An unexpected error occurred, please try again.</div>
+        <div v-else>{{ serverErrorMessage }}</div>
       </div>
     </section>
     <div class="empty-cart" v-else>
