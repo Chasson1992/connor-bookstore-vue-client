@@ -25,7 +25,6 @@ export const useCartStore = defineStore("CartStore", {
   },
   getters: {
     count(): number {
-      console.log(this.cart.numberOfItems);
       return this.cart.numberOfItems;
     },
   },
@@ -47,7 +46,6 @@ export const useCartStore = defineStore("CartStore", {
       customerForm: CustomerForm
     ): Promise<OrderDetails | ServerErrorResponse> {
       const order = { cart: this.cart, customerForm: customerForm };
-      console.log(JSON.stringify(order));
 
       const response: Response = await fetch(`${apiUrl}/orders`, {
         mode: "cors",

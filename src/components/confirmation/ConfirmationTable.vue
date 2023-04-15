@@ -1,22 +1,23 @@
 <script setup lang="ts">
-import { getBookImageUrl } from "@/utils";
-import { useCartStore } from "@/stores/CartStore";
-const cartStore = useCartStore();
-import { asDollarsAndCents } from "@/utils";
-
+import type { BookItem, OrderDetails } from "@/types";
 import { useOrderDetailsStore } from "@/stores/OrderDetailsStore";
-import { BookItem, OrderDetails } from "@/types";
+import type { LineItem } from "@/types";
+import { asDollarsAndCents } from "@/main";
 
 const orderDetailsStore = useOrderDetailsStore();
 const orderDetails: OrderDetails = orderDetailsStore.orderDetails;
 
-// A helper function - optional to use
-const bookAt = function (orderDetails: OrderDetails, index: number): BookItem {
-  return orderDetails.books[index];
+const bookImageFileName = function (book: BookItem): string {
+  let name = book.title.toLowerCase();
+  name = name.replace(/ /g, "-");
+  name = name.replace(/'/g, "");
+  return `${name}.png`;
 };
+
+function getBookImageUrl(name: string) {
+  return new URL(`../../assets/images/books/${name}`, import.meta.url).href;
+}
 </script>
-
-
 
 <style scoped>
 table {
@@ -48,21 +49,34 @@ td:nth-child(2) {
 td:nth-child(3) {
   text-align: right;
 }
-</style>
 
+img {
+  height: 100px;
+  width: auto;
+}
+</style>
 
 <template>
   <table>
+    <tr>
+      <th scope="col">Book</th>
+      <th scope="col">Quanity</th>
+      <th scope="col">Price</th>
+    </tr>
     <tr
-      v-for="(item, index) in this.orderDetails.lineItems"
-      :key="item.productId"
+      v-for="(item, index) in orderDetails.lineItems as LineItem[]"
+      :key="index"
     >
       <td>
-        {{ orderDetails.books[index].title }}
+        <img
+          :src="getBookImageUrl(bookImageFileName(orderDetails.books[index]))"
+          :alt="orderDetails.books[index].title"
+        />
       </td>
       <td>{{ item.quantity }}</td>
-      <td>{{ asDollarsAndCents(1299) }}</td>
+      <td>
+        {{ asDollarsAndCents(orderDetails.books[index].price) }}
+      </td>
     </tr>
   </table>
 </template>
-

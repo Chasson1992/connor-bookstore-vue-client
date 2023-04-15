@@ -9,12 +9,14 @@ import {
   email,
 } from "@vuelidate/validators";
 import { useCartStore } from "@/stores/CartStore";
+import { useOrderDetailsStore } from "@/stores/OrderDetailsStore";
 import { asDollarsAndCents } from "@/main";
 import CheckoutFieldError from "@/components/checkout/CheckoutFieldError.vue";
 import { isCreditCard, isMobilePhone } from "@/validators";
 import router from "@/router";
 import type { OrderDetails, ServerErrorResponse } from "@/types";
 
+const orderDetailsStore = useOrderDetailsStore();
 const cartStore = useCartStore();
 const cart = cartStore.cart;
 
@@ -92,7 +94,6 @@ const rules = {
 const v$ = useVuelidate(rules, form);
 
 async function submitOrder() {
-  console.log("Submit order");
   const isFormCorrect = await v$.value.$validate();
   if (!isFormCorrect) {
     form.checkoutStatus = "ERROR";
@@ -118,6 +119,7 @@ async function submitOrder() {
         console.log("Error placing order", placeOrderResponse);
       } else {
         form.checkoutStatus = "OK";
+        orderDetailsStore.setOrderDetails(placeOrderResponse);
         await router.push({ name: "confirmation-view" });
       }
     } catch (e) {
