@@ -9,6 +9,21 @@ const router = createRouter({
       component: () => import("@/views/HomeView.vue"),
     },
     {
+      path: "/home",
+      name: "slash-home",
+      component: () => import("@/views/HomeView.vue"),
+    },
+    {
+      path: "/index.html",
+      name: "index-home",
+      component: () => import("@/views/HomeView.vue"),
+    },
+    {
+      path: "/category",
+      name: "category-default",
+      component: () => import("@/views/CategoryView.vue"),
+    },
+    {
       path: "/category/:name",
       name: "category-view",
       component: () => import("@/views/CategoryView.vue"),
@@ -27,6 +42,11 @@ const router = createRouter({
       path: "/confirmation",
       name: "confirmation-view",
       component: () => import("@/views/ConfirmationView.vue"),
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "404",
+      component: () => import("@/views/404View.vue"),
     },
   ],
 });

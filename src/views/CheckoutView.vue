@@ -314,7 +314,9 @@ form > .error {
           type="submit"
           name="submit"
           class="cart-button button"
-          :disabled="form.checkoutStatus === 'PENDING'"
+          :disabled="
+            form.checkoutStatus === 'PENDING' || form.checkoutStatus === 'OK'
+          "
           value="Complete Purchase"
         />
       </form>

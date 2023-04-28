@@ -6,7 +6,7 @@ const ORDER_DETAIL_STORAGE_KEY = "OrderDetails";
 export const useOrderDetailsStore = defineStore("OrderDetailStore", {
   state: () => {
     const initOrderDetails = {} as OrderDetails;
-    const orderDetailsString = localStorage.getItem(ORDER_DETAIL_STORAGE_KEY);
+    const orderDetailsString = sessionStorage.getItem(ORDER_DETAIL_STORAGE_KEY);
     if (orderDetailsString !== null) {
       const orderDetailsFromStorage = JSON.parse(
         orderDetailsString
@@ -21,7 +21,7 @@ export const useOrderDetailsStore = defineStore("OrderDetailStore", {
   actions: {
     clearOrderDetails() {
       this.orderDetails = {} as OrderDetails;
-      localStorage.setItem(
+      sessionStorage.setItem(
         ORDER_DETAIL_STORAGE_KEY,
         JSON.stringify(this.orderDetails)
       );
@@ -34,7 +34,7 @@ export const useOrderDetailsStore = defineStore("OrderDetailStore", {
     },
     setOrderDetails(orderDetails: OrderDetails) {
       this.orderDetails = orderDetails;
-      localStorage.setItem(
+      sessionStorage.setItem(
         ORDER_DETAIL_STORAGE_KEY,
         JSON.stringify(this.orderDetails)
       );

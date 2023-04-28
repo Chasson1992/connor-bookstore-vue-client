@@ -13,20 +13,16 @@ const cartStore = useCartStore();
 }
 
 .cart-buttons {
-  display: grid;
-  grid-template-columns: minmax(10em, 20em) minmax(10em, 20em) minmax(
-      10em,
-      20em
-    );
+  display: flex;
   justify-items: center;
   justify-content: center;
-}
-
-.cart-button:hover {
-  color: unset;
+  gap: 5rem;
 }
 
 .cart-button {
+  background-color: var(--primary-color-dark);
+  transition: background-color 0.1s ease;
+  color: white;
   width: fit-content;
 }
 
@@ -34,6 +30,11 @@ const cartStore = useCartStore();
   background-color: var(--primary-color-dark);
   transition: background-color 0.1s ease;
   color: white;
+}
+
+.clear-cart-button {
+  width: fit-content;
+  border: solid 1px;
 }
 
 h1 {
@@ -55,13 +56,21 @@ h1 {
       <TheCartTable></TheCartTable>
     </span>
     <div class="cart-buttons">
-      <button class="cart-button button" @click="cartStore.clearCart()">
+      <button
+        v-if="!cartStore.cart.empty"
+        class="clear-cart-button button"
+        @click="cartStore.clearCart()"
+      >
         Clear Cart
       </button>
       <button class="cart-button button" @click="$router.back()">
         Continue Shopping
       </button>
-      <RouterLink to="/checkout" class="cart-checkout-button button">
+      <RouterLink
+        to="/checkout"
+        v-if="!cartStore.cart.empty"
+        class="cart-checkout-button button"
+      >
         Proceed To Checkout &#8594;
       </RouterLink>
     </div>

@@ -70,10 +70,33 @@ ul {
 ul > li {
   margin: 0.25em;
 }
+
+.cart-button {
+  align-self: center;
+  width: fit-content;
+  background-color: var(--primary-color-dark);
+  transition: background-color 0.1s ease;
+}
+
+.cart-button * {
+  color: white;
+}
+
+.cart-button {
+  color: white;
+}
+
+.no-order {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 <template>
-  <div id="confirmationView">
+  <div v-if="orderDetails.order != null" id="confirmationView">
     <div id="thankYou">
       <h1>Your order is on the way!</h1>
       <i
@@ -101,5 +124,13 @@ ul > li {
       <h3>Shipping: $5.00</h3>
       <h3>Total: {{ subtotalWithShipping() }}</h3>
     </div>
+  </div>
+  <div v-else class="no-order">
+    <h1>Nothing has been ordered.</h1>
+    <button class="cart-button button">
+        <RouterLink class="continue-shopping" to="/category/Classics">
+          Continue Shopping
+        </RouterLink>
+      </button>
   </div>
 </template>

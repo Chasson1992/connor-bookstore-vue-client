@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import type { BookItem } from "@/types";
 import { apiUrl } from "@/api";
 import { useCategoryStore } from "@/stores/CategoryStore";
+import router from "@/router";
 
 export const useBookStore = defineStore("book", {
   state: () => ({
@@ -19,6 +20,8 @@ export const useBookStore = defineStore("book", {
       );
       if (selectedCategory) {
         selectedCategoryName = selectedCategory.name;
+      } else {
+        router.push("/404");
       }
 
       const url =
