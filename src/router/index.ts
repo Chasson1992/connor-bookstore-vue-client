@@ -20,8 +20,7 @@ const router = createRouter({
     },
     {
       path: "/category",
-      name: "category-default",
-      component: () => import("@/views/CategoryView.vue"),
+      redirect: "/category/Classics",
     },
     {
       path: "/category/:name",

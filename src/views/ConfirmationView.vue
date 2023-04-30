@@ -128,9 +128,9 @@ ul > li {
   <div v-else class="no-order">
     <h1>Nothing has been ordered.</h1>
     <button class="cart-button button">
-        <RouterLink class="continue-shopping" to="/category/Classics">
-          Continue Shopping
-        </RouterLink>
-      </button>
+      <RouterLink class="continue-shopping" to="/category/Classics">
+        Continue Shopping
+      </RouterLink>
+    </button>
   </div>
 </template>
